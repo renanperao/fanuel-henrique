@@ -11,7 +11,9 @@ assets/css/styles.css  visual (paleta "boteco acústico")
 assets/js/config.js    ← TUDO que você precisa editar no dia a dia
 assets/js/app.js       renderização, busca, formulários
 assets/js/qr.js        gerador de QR Code próprio (não usa serviço de terceiros)
-assets/img/            hero, favicon, QR do Pix
+assets/img/            fotos (originais + versões leves), favicon, og
+vercel.json           cache e cabeçalhos na Vercel (não é build)
+robots.txt            libera a indexação
 ```
 
 ---
@@ -48,7 +50,7 @@ Tudo em **`assets/js/config.js`**. Os campos abaixo são os obrigatórios:
 
 ### Foto do topo
 
-Já está no ar a foto ao vivo (`assets/img/fanuel cortada.jpeg`). Como o original
+Já está no ar a foto ao vivo (`assets/img/original-ao-vivo.jpeg`). Como o original
 tem 456 KB e 2025px, o site carrega versões reduzidas geradas a partir dele:
 
 | arquivo | uso | peso |
@@ -72,7 +74,7 @@ site; o degradê escuro por cima garante a legibilidade do texto.
 
 ### Foto dos formatos de show
 
-A foto de estúdio (`assets/img/IMG_5832.JPG.jpeg_202608280804.jpeg`) cobre a
+A foto de estúdio (`assets/img/original-estudio.jpeg`) cobre a
 seção inteira, como o hero, com os três cards por cima, lado a lado. Versões
 leves: `formatos-700.webp` (10 KB) e `formatos-1376.webp` (29 KB), com `.jpg` de
 fallback (20 e 60 KB).
@@ -88,9 +90,10 @@ seção.
 
 ### Preview no WhatsApp e no Instagram
 
-Crie uma imagem **1200×630** e salve em `assets/img/og.jpg` — é ela que aparece
-quando alguém cola o link do site numa conversa. Sem esse arquivo, o link vai
-sem imagem (não quebra nada).
+Já gerada em `assets/img/og.jpg` (1200×630, 49 KB): um recorte da foto ao vivo
+com o mesmo tom quente do site. É ela que aparece quando alguém cola o link numa
+conversa. Depois do deploy, troque o `og:image` do `index.html` pela URL
+absoluta.
 
 ### Vídeos
 
@@ -137,15 +140,50 @@ cada uma com o QR de **pedir música** (abre o WhatsApp com a mensagem já
 escrita) e o QR da **caixinha** (só aparece se o `copiaECola` estiver
 preenchido). Recorte e deixe nas mesas.
 
-## 4. Publicando
+## 4. Publicando na Vercel
 
-Qualquer hospedagem de site estático serve — é só subir a pasta inteira:
+O repositório já está pronto: **não existe build**. Na Vercel, importe
+`github.com/renanperao/fanuel-henrique` e aceite os padrões:
 
-- **Cloudflare Pages / Netlify / Vercel**: arrastar a pasta na interface, sem build.
-- **GitHub Pages**: commitar e apontar para a branch.
+| Campo | Valor |
+|---|---|
+| Framework Preset | **Other** |
+| Build Command | *(vazio)* |
+| Output Directory | *(vazio — a raiz do repo)* |
+| Install Command | *(vazio)* |
 
-Depois de publicar, volte no `config.js` e coloque o endereço real em
-`site.url`, senão o QR da plaquinha aponta pro lugar errado.
+Não adicione `package.json`: sem ele a Vercel trata o projeto como estático e
+serve os arquivos direto.
+
+O `vercel.json` já vai versionado e cuida de:
+
+- **`cleanUrls`** — a plaquinha fica em `/mesa`, sem o `.html`.
+- **Cache**: imagens por 7 dias, CSS e JS por 1 hora (ambos com
+  `stale-while-revalidate`); o HTML fica sem cache, como já é o padrão da
+  Vercel. Como os arquivos não têm hash no nome, não dá pra usar cache eterno:
+  uma mudança no `config.js` (número de WhatsApp, por exemplo) pode levar até
+  1 hora para chegar em quem já visitou, e uma foto trocada mantendo o mesmo
+  nome, até 7 dias. Se precisar que apareça na hora, salve com outro nome de
+  arquivo e aponte o `config.js` para ele.
+- **Cabeçalhos de segurança**: `X-Content-Type-Options`, `Referrer-Policy` e
+  `Permissions-Policy`.
+
+### Depois do primeiro deploy (2 ajustes)
+
+1. **`site.url`** no `config.js` → endereço real. É ele que vira QR na
+   plaquinha de mesa; enquanto estiver errado, o QR aponta pro lugar errado.
+2. **`og:image`** no `index.html` → troque `assets/img/og.jpg` pela URL
+   absoluta (`https://seu-dominio/assets/img/og.jpg`). Tem um comentário no
+   arquivo marcando a linha. Vários leitores de link só aceitam caminho
+   completo, e é essa imagem que aparece quando alguém cola o link no WhatsApp.
+
+Depois é só commitar e dar push: a Vercel publica sozinha a cada push na `main`.
+
+### Outras hospedagens
+
+Serve em qualquer host estático — Cloudflare Pages, Netlify, GitHub Pages — é
+só apontar para a raiz do repositório. Só o `vercel.json` é específico da
+Vercel; nas outras, configure cache e cabeçalhos pelo painel delas.
 
 ## 5. O que já está pronto (e testado)
 

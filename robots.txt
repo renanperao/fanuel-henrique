@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# mesa.html tem noindex na própria página: precisa ser rastreada
+# para que a diretiva seja lida, por isso não entra em Disallow.
