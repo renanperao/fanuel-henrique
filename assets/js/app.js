@@ -192,6 +192,26 @@
         });
       });
     });
+
+    // Auto-play ao deslizar no carrossel — só no mobile (< 760px)
+    if (window.IntersectionObserver && vids.length) {
+      var observer = new IntersectionObserver(function (entries) {
+        if (window.innerWidth >= 760) return; // ignora no desktop
+        entries.forEach(function (entry) {
+          var vid = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+            vids.forEach(function (other) {
+              if (other !== vid) other.pause();
+            });
+            vid.play().catch(function () {}); // catch: autoplay policy em alguns browsers
+          } else {
+            vid.pause();
+          }
+        });
+      }, { threshold: 0.7 });
+
+      vids.forEach(function (vid) { observer.observe(vid); });
+    }
   }
 
   /* ---------- Repertório ---------- */
