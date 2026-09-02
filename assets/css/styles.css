@@ -544,7 +544,7 @@ p{ margin:0; }
   scrollbar-width:none;
 }
 .videos::-webkit-scrollbar{ display:none; }
-.videos > *{ flex:0 0 80%; scroll-snap-align:start; }
+.videos > *{ flex:0 0 80%; scroll-snap-align:center; }
 
 @media (min-width:760px){
   .videos{
