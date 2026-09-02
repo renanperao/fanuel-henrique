@@ -7,17 +7,17 @@ window.SITE = {
   artista: {
     nome: "Fanuel Henrique",
     tagline: "Sertanejo & Modão • Voz e Violão",
-    cidade: "Sua Cidade",
-    uf: "SP",
-    regiao: "Região metropolitana e cidades vizinhas"
+    cidade: "Pato Branco",
+    uf: "PR",
+    regiao: "Pato Branco e região"
   },
 
   contato: {
     // Formato internacional, só números: 55 + DDD + número
-    whatsapp: "5599999999999",
-    instagram: "fanuelhenrique",
+    whatsapp: "5546991213141",
+    instagram: "fanuel_hlds",
     youtube: "", // ex.: "@fanuelhenrique" (deixe "" para esconder)
-    email: "contato@fanuelhenrique.com.br"
+    email: ""
   },
 
   // Foto do topo. Para trocar por outra: aponte "hero" para o arquivo novo e
@@ -60,49 +60,45 @@ window.SITE = {
   // Vídeos: YouTube (id) ou arquivo local em assets/video/ (src + poster).
   videos: [
     {
-      tipo: "youtube",
-      id: "",
-      titulo: "Modão clássico",
-      legenda: "Voz e violão limpos, do jeito que o modão pede."
+      tipo: "local",
+      src: "assets/video/fanuel_hlds_1758222627_3724562247810239379_8146000432.mp4",
+      titulo: "Voz e violão solo",
+      legenda: ""
     },
     {
-      tipo: "youtube",
-      id: "",
-      titulo: "O bar cantando junto",
-      legenda: "Refrão em coro — a prova de que a casa embala."
+      tipo: "local",
+      src: "assets/video/fanuel_hlds_1773926530_3856296901738339027_8146000432.mp4",
+      titulo: "voz, violão e gaita",
+      legenda: ""
     },
     {
-      tipo: "youtube",
-      id: "",
-      titulo: "Hits do momento",
-      legenda: "O que está tocando agora, na pegada acústica."
+      tipo: "local",
+      src: "assets/video/fanuel_hlds_1776354707_3876664637559213195_8146000432.mp4",
+      titulo: "dupla voz e violão",
+      legenda: ""
+    },
+    {
+      tipo: "local",
+      src: "assets/video/fanuel_hlds_1787320244_3968650926434344404_8146000432.mp4",
+      titulo: "Banda completa",
+      legenda: ""
     }
   ],
 
   formatos: [
     {
       icone: "violao",
-      nome: "Voz & Violão",
-      resumo: "Solo",
-      texto:
-        "O formato mais pedido para happy hour, restaurante e barzinho. Som na medida: dá pra conversar na mesa e cantar junto no refrão.",
-      itens: ["Até 3h de show", "Equipamento próprio", "Casas de até 80 lugares"]
+      nome: "Voz, violão e gaita",
+      resumo: "",
+      texto: "",
+      itens: ["2:00 de show"]
     },
     {
       icone: "duo",
-      nome: "Duo Sertanejo",
-      resumo: "Voz + sanfona/percussão",
-      texto:
-        "Mais pressão sonora e mais balanço para casas movimentadas, nas noites de sexta e sábado cheias.",
-      itens: ["Até 4h de show", "PA reforçado", "Repertório mais dançante"]
-    },
-    {
-      icone: "festa",
-      nome: "Eventos Privados",
-      resumo: "Aniversários e festas",
-      texto:
-        "Churrasco, noivado, aniversário e confra de empresa. Repertório montado junto com você, incluindo a música da entrada.",
-      itens: ["Formato flexível", "Repertório personalizado", "Atendimento na região"]
+      nome: "Banda completa",
+      resumo: "",
+      texto: "",
+      itens: ["2:30/3:00 de show, conforme as necessidades do contratante"]
     }
   ],
 
@@ -193,22 +189,59 @@ window.SITE = {
 
   depoimentos: [
     {
-      texto:
-        "Casa cheia até o último set. O pessoal ficou pedindo música até a hora de fechar a conta.",
-      autor: "Marcos",
-      papel: "Boteco da Esquina"
+      texto: "00 da região 🔥",
+      autor: "@kaipersantony",
+      papel: ""
     },
     {
-      texto:
-        "Chegou cedo, montou tudo sozinho e ainda ajustou o repertório com o clima da noite. Já reservei o mês inteiro.",
-      autor: "Juliana",
-      papel: "Empório & Bar"
+      texto: "Aí sim👏👏",
+      autor: "@limaclarice79",
+      papel: ""
     },
     {
-      texto:
-        "Cantou a música da nossa história na entrada. Não teve um convidado que não chorou.",
-      autor: "Rafa & Bia",
-      papel: "Noivado"
+      texto: "Talentoso demais ❤️",
+      autor: "@marialu.rossoni",
+      papel: ""
+    },
+    {
+      texto: "Arrasaramm 🔥👏",
+      autor: "@stefanie_gb",
+      papel: ""
+    },
+    {
+      texto: "Aí sim hein top demais Deus abençoe 🙏",
+      autor: "@ederson_santos_010",
+      papel: ""
+    },
+    {
+      texto: "Show, muito talentosos👏🏼",
+      autor: "@pietragoss_",
+      papel: ""
+    },
+    {
+      texto: "👏👏👏👏",
+      autor: "@paulinho.rso_jr",
+      papel: ""
+    },
+    {
+      texto: "Top",
+      autor: "@_ana_paula076",
+      papel: ""
+    },
+    {
+      texto: "Brabooo 🔥🔥",
+      autor: "@_neemiasaugusto",
+      papel: ""
+    },
+    {
+      texto: "Canta dms irmão 👏",
+      autor: "@_alexandrefae",
+      papel: ""
+    },
+    {
+      texto: "Bom de mais esse cara🔥",
+      autor: "@guimsc",
+      papel: ""
     }
   ]
 };

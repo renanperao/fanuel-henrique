@@ -126,8 +126,8 @@
         '<article class="card reveal">' +
           '<div class="card__ico"><svg viewBox="0 0 24 24">' + (ICONES[f.icone] || ICONES.violao) + '</svg></div>' +
           "<h3>" + esc(f.nome) + "</h3>" +
-          '<p class="card__resumo">' + esc(f.resumo) + "</p>" +
-          "<p>" + esc(f.texto) + "</p>" +
+          (f.resumo ? '<p class="card__resumo">' + esc(f.resumo) + "</p>" : "") +
+          (f.texto ? "<p>" + esc(f.texto) + "</p>" : "") +
           (itens ? "<ul>" + itens + "</ul>" : "") +
         "</article>";
     }).join("");
@@ -138,13 +138,15 @@
     var alvo = $("#quotes-grid");
     if (!alvo) return;
 
-    alvo.innerHTML = (S.depoimentos || []).map(function (d) {
+    var html = (S.depoimentos || []).map(function (d) {
       return '' +
-        '<article class="quote reveal">' +
+        '<article class="quote">' +
           "<p>" + esc(d.texto) + "</p>" +
           "<footer><strong>" + esc(d.autor) + "</strong>" + esc(d.papel) + "</footer>" +
         "</article>";
     }).join("");
+
+    alvo.innerHTML = html + html;
   }
 
   /* ---------- Vídeos ---------- */
@@ -160,8 +162,8 @@
                 'title="' + esc(v.titulo) + '" loading="lazy" allowfullscreen ' +
                 'allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"></iframe>';
       } else if (v.tipo === "local" && v.src) {
-        frame = "<video controls preload=\"none\"" + (v.poster ? ' poster="' + esc(v.poster) + '"' : "") +
-                '><source src="' + esc(v.src) + '" type="video/mp4"></video>';
+        frame = "<video controls preload=\"metadata\"" + (v.poster ? ' poster="' + esc(v.poster) + '"' : "") +
+                '><source src="' + esc(v.src) + '#t=0.001" type="video/mp4"></video>';
       } else {
         frame = '' +
           '<div class="video__ph">' +
@@ -178,6 +180,17 @@
           "<p>" + esc(v.legenda) + "</p>" +
         "</article>";
     }).join("");
+
+    var vids = $$("video", alvo);
+    vids.forEach(function (vid) {
+      vid.addEventListener("play", function () {
+        vids.forEach(function (other) {
+          if (other !== vid && !other.paused) {
+            other.pause();
+          }
+        });
+      });
+    });
   }
 
   /* ---------- Repertório ---------- */

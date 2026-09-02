@@ -88,7 +88,7 @@ p{ margin:0; }
 .btn{
   --btn-bg:transparent; --btn-fg:var(--text); --btn-bd:var(--line-strong);
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding:14px 22px; border-radius:999px;
+  padding:14px 22px; border-radius:12px;
   background:var(--btn-bg); color:var(--btn-fg); border:1px solid var(--btn-bd);
   font-weight:600; font-size:.95rem; letter-spacing:.01em;
   cursor:pointer; text-align:center;
@@ -375,6 +375,7 @@ p{ margin:0; }
 .secao__bg picture{ display:block; width:100%; height:100%; }
 .secao__bg img{
   width:100%; height:100%; object-fit:cover; object-position:26% 38%;
+  transform: scaleX(-1);
 }
 /* escurece o suficiente para os cards e o título lerem por cima,
    e dissolve nas bordas para emendar com as seções vizinhas */
@@ -545,7 +546,7 @@ p{ margin:0; }
 
 @media (min-width:760px){
   .videos{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
     overflow:visible; margin-inline:0; padding:0;
   }
   .videos > *{ flex:initial; }
@@ -579,23 +580,46 @@ p{ margin:0; }
 .video p{ color:var(--text-dim); font-size:.88rem; }
 
 /* ============ DEPOIMENTOS ============ */
-.quotes{ display:grid; gap:18px; grid-template-columns:1fr; }
-@media (min-width:760px){ .quotes{ grid-template-columns:repeat(3,1fr); } }
+.strip-feedbacks {
+  padding: 10px 0;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.quotes-marquee {
+  overflow: hidden;
+  padding: 4px 0;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.quotes-track {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  animation: marqueeQuotes 40s linear infinite;
+}
+.quotes-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marqueeQuotes {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 8px)); } /* 8px is half the gap */
+}
 
 .quote{
-  position:relative; padding:30px 26px 26px; border-radius:var(--radius-lg);
-  background:linear-gradient(165deg, var(--surface-2), var(--surface));
-  border:1px solid var(--line);
+  padding: 8px 18px; border-radius: 99px;
+  background: linear-gradient(165deg, rgba(36,32,28,.4), rgba(24,21,19,.5));
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.05);
+  flex: none;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 8px;
 }
-.quote::before{
-  content:"\201C";
-  position:absolute; top:2px; left:20px;
-  font-family:var(--font-serif); font-size:4.6rem; line-height:1;
-  color:rgba(217,119,6,.35);
-}
-.quote p{ position:relative; font-family:var(--font-serif); font-size:1.05rem; font-style:italic; }
-.quote footer{ margin-top:18px; font-size:.82rem; color:var(--text-dim); }
-.quote footer strong{ color:var(--amber-soft); font-style:normal; display:block; font-size:.9rem; }
+.quote::before{ content: none; }
+.quote p{ font-size: .9rem; color: var(--text-dim); white-space: nowrap; margin: 0; font-style: normal; }
+.quote footer{ font-size: .85rem; white-space: nowrap; margin: 0; }
+.quote footer strong{ color: var(--amber-soft); font-weight: 600; font-style: normal; display: inline; }
 
 /* ============ BOTECO DIGITAL ============ */
 .boteco{ display:grid; gap:18px; grid-template-columns:1fr; }
