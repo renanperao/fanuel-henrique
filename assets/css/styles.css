@@ -784,3 +784,28 @@ p{ margin:0; }
   margin-top:4px; font-size:.82rem; color:var(--text-dim); letter-spacing:.02em;
 }
 @media (min-width:760px){ .videos__dica{ display:none; } }
+
+/* ============ PINE COLLECTIVE ============ */
+.pine-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #000;
+  padding: 6px 14px;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: "Geist", sans-serif;
+}
+.pine-badge img {
+  height: 14px;
+  width: auto;
+  opacity: 0.8;
+}
+.pine-badge--footer {
+  background: transparent;
+  padding: 0;
+  margin-top: 24px;
+}

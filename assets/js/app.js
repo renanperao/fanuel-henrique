@@ -122,14 +122,15 @@
 
     alvo.innerHTML = (S.formatos || []).map(function (f) {
       var itens = (f.itens || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
+      var msg = "Olá! Vi seu site e gostaria de consultar disponibilidade de data para o show no formato: " + f.nome + ".";
       return '' +
-        '<article class="card reveal">' +
+        '<a href="' + waLink(msg) + '" target="_blank" rel="noopener" class="card reveal" style="text-decoration:none; color:inherit; display:flex;">' +
           '<div class="card__ico"><svg viewBox="0 0 24 24">' + (ICONES[f.icone] || ICONES.violao) + '</svg></div>' +
           "<h3>" + esc(f.nome) + "</h3>" +
           (f.resumo ? '<p class="card__resumo">' + esc(f.resumo) + "</p>" : "") +
           (f.texto ? "<p>" + esc(f.texto) + "</p>" : "") +
-          (itens ? "<ul>" + itens + "</ul>" : "") +
-        "</article>";
+          (itens ? '<ul class="card__lista">' + itens + "</ul>" : "") +
+        "</a>";
     }).join("");
   }
 
