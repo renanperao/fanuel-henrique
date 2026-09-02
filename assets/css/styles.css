@@ -534,22 +534,14 @@ p{ margin:0; }
 .repertorio__cta p{ color:var(--text-muted); flex:1 1 260px; }
 
 /* ============ VÍDEOS ============ */
-/* no celular vira carrossel horizontal (pegada de reel); no desktop, grade */
 .videos{
-  display:flex; gap:16px;
-  overflow-x:auto; scroll-snap-type:x mandatory;
-  margin-inline:calc(var(--pad) * -1); padding:2px var(--pad) 14px;
-  scrollbar-width:none;
+  display:grid; grid-template-columns:1fr; gap:20px;
 }
-.videos::-webkit-scrollbar{ display:none; }
-.videos > *{ flex:0 0 76%; scroll-snap-align:center; }
-
+@media (min-width:480px){
+  .videos{ grid-template-columns:repeat(2,1fr); }
+}
 @media (min-width:760px){
-  .videos{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
-    overflow:visible; margin-inline:0; padding:0;
-  }
-  .videos > *{ flex:initial; }
+  .videos{ grid-template-columns:repeat(4,1fr); }
 }
 
 .video{ display:flex; flex-direction:column; gap:12px; }
@@ -779,11 +771,8 @@ p{ margin:0; }
   body::before{ display:none; }
 }
 
-/* dica do carrossel de vídeos (só no celular) */
-.videos__dica{
-  margin-top:4px; font-size:.82rem; color:var(--text-dim); letter-spacing:.02em;
-}
-@media (min-width:760px){ .videos__dica{ display:none; } }
+/* dica do carrossel de vídeos (removido) */
+.videos__dica{ display:none; }
 
 /* ============ PINE COLLECTIVE ============ */
 .pine-badge {
