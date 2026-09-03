@@ -61,8 +61,8 @@ window.SITE = {
   videos: [
     {
       tipo: "local",
-      src: "assets/video/fanuel_hlds_1758222627_3724562247810239379_8146000432.mp4",
-      titulo: "Voz e violão solo",
+      src: "assets/video/fanuel_hlds_1787320244_3968650926434344404_8146000432.mp4",
+      titulo: "Banda completa",
       legenda: ""
     },
     {
@@ -74,13 +74,7 @@ window.SITE = {
     {
       tipo: "local",
       src: "assets/video/fanuel_hlds_1776354707_3876664637559213195_8146000432.mp4",
-      titulo: "dupla voz e violão",
-      legenda: ""
-    },
-    {
-      tipo: "local",
-      src: "assets/video/fanuel_hlds_1787320244_3968650926434344404_8146000432.mp4",
-      titulo: "Banda completa",
+      titulo: "Voz e Violão",
       legenda: ""
     }
   ],
